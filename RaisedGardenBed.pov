@@ -21,12 +21,6 @@ light_source { <250.0, 25.0, -100.0> colour DimGray }
 }
 camera { CamScene }
 
-#declare ScrewHead = cone {
-   <-1, 0, 0>, 1.0 
-   <0, 0, 0>, 0.25
-   texture { pigment { color Blue } }
-}
-
 background { color Blue }
 
 plane {
@@ -36,6 +30,12 @@ plane {
          color <0.184314, 0.7, 0.184314>
       }
    }
+}
+
+#declare ScrewHead = cone {
+   <-1, 0, 0>, 1.0 
+   <0, 0, 0>, 0.25
+   texture { pigment { color Blue } }
 }
 
 #declare Upright = box {
@@ -173,3 +173,51 @@ plane {
    object { LongBoards }
 }
 object { BasicFrame }
+
+#declare Support = box {
+   <-20, -0.5, -0.5>, <20, 0.5, 0.5>
+   texture { pigment { color Yellow } }
+}
+#declare Supports = union {
+   object {
+      Support
+      translate <0, 9, 12>
+   }
+   object {
+      Support
+      translate <0, 9, -12>
+   }
+}
+object { Supports }
+
+#declare Slat = box {
+   <-3, -0.5, -11.5>, <3, 0.5, 11.5>
+   texture { pigment { color Brown } }
+}
+#declare Slats = union {
+   object {
+      Slat
+      translate <0, 10, 0>
+   }
+   object {
+      Slat
+      translate <-7, 10, 0>
+   }
+   object {
+      Slat
+      translate <7, 10, 0>
+   }
+   object {
+      Slat
+      translate <-14, 10, 0>
+   }
+   object {
+      Slat
+      translate <14, 10, 0>
+   }
+   //object {
+   //   Slat
+   //   translate <0, 10, 0>
+   //}
+}
+object { Slats }
